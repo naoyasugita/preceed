@@ -1,76 +1,29 @@
+<!DOCTYPE html>
+<html>
 <head>
- <meta charset="utf-8" />
- <meta name="format-detection" content="telephone=no" />
- <meta name="msapplication-tap-highlight" content="no" />
- <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
- 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
-  
- <style>
- body{
-   font-family: "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
- }
- .contents{
-   width: 90%;
-   margin: auto;
- }
- .jumbotron{
-   width: 100%;
-   border-radius: 8px;
-  
-   padding-left: 12px;
- }
- </style>
- 
- <script type="text/javascript" src="cordova.js"></script>
- <script type="text/javascript" src="js/searchAddress.js"></script>
- <script type="text/javascript" src="js/storageManager.js"></script>
-  
- <script>
- var smanager = new storageManager("ZIP_ADDRESS_DATA");
- 
- function showSavedData(){
-   var msg = "";
-   var data = smanager.getAll();
-   for(var p in data){ msg += p + ": " + data[p] + "\n"; }
-     alert(msg);
-   }
- 
- function saveData(zip_no, address){
-   smanager.set(zip_no, address);
-   alert("保存しました");
- }
- 
- function deleteAll(){
-   smanager.deleteAll();
-   alert("削除しました");
- }
- </script>
- 
- <title>郵便番号検索</title>
-  
- </head>
- <body>
-  
- <div class="contents">
- 
- <div class="jumbotron">
- <h1>郵便番号検索</h1>
- <p>ハイフンなし7桁の郵便番号を入力し、検索ボタンを押してしてください</p>
- <input type="text" id="zipno" />
- <button class="btn btn-primary" onclick="searchAddressFromZipno()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
- <button class="btn btn-default" onclick="showSavedData()">保存したデータを見る</button>
- <button class="btn btn-danger" onclick="deleteAll()">保存したデータを削除</button>
- </div>
-  
- <div id="result"></div>
-  
- </div>
- 
+    <title>localStorage</title>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            position: relative;
+            top: 7vw;
+            /*background-color: red;*/
+        }
+    </style>
+</head>
+
+<body>
+    <h1>登録</h1>
+    <div id="form">
+        <input id="name" type="text"><br>
+        <input id="email" type="text"><br>
+        <textarea id="message"></textarea><br>
+        <input id="formButton" type="button" value="追加">
+    </div>
+    <div id="list"></div>
+    <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/local_test.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 </body>
+
 </html>
