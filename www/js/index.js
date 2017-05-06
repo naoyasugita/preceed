@@ -2,7 +2,7 @@ window.onload=function(){
 var restext = document.getElementById("restext");
 var savebtn = document.getElementById("save");
 var deletebtn = document.getElementById("delete");
-var count = 0
+let arr = [];
 if (!window.localStorage) {
     restext.innerHTML = "web Storageに対応しておりません。";
     return;
@@ -16,34 +16,25 @@ savebtn.addEventListener("click", function() {
         restext.innerHTML = "データを入力してください";
         return;
     }
-    var datalist = {
-        uname: t,
-        email: n,
-        message:m
-    }
-    window.localStorage.setItem("datalist" + count, JSON.stringify(datalist));
+
+    // var arr = '"' + count + '":{"uname":' + t + "," + '"email":' + n + "," +'"message":' + m +"},"
+
+    arr.push({"uname":t,"email":n,"message":m});
+    localStorage.setItem('datalist', arr);
+
+    window.localStorage.setItem("datalist", JSON.stringify(arr));
     restext.innerHTML = "データを保存しました";
-    count ++
     display();
 }, true);
 
 function display() {
-    for (var i = 0;i < count;i++){
-        var d = JSON.parse(window.localStorage.getItem("datalist" + i));
-        var dl = document.createElement("dl");
-        dl.id = "resdata";
-        document.getElementById("res").appendChild(dl);
-        var dt = document.createElement("dt");
-        var dd = document.createElement("dd");
-        var dm = document.createElement("dm");
-        document.getElementById("resdata").appendChild(dt);
-        document.getElementById("resdata").appendChild(dd);
-        document.getElementById("resdata").appendChild(dm);
-        dt.innerHTML = d.uname;
-        dd.innerHTML = d.email;
-        dm.innerHTML = d.message;
-    }
-
+       let data = JSON.parse(window.localStorage.getItem("datalist"));
+        for (let i in data){
+            console.log("name;" + data[i].uname);
+            console.log("email:" + data[i].email);
+            console.log("message:" + data[i].message);
+            console.log("-----------------");
+        }
 };
 
 deletebtn.addEventListener("click", function() {
