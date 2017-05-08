@@ -21,6 +21,7 @@ function saveText() {
     }
     localStorage.setItem("datalist", JSON.stringify(datalist));
     JSON.parse(localStorage.getItem("datalist"));
+    return datalist;
 }
 
 function showText() {

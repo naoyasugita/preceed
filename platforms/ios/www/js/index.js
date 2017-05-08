@@ -1,46 +1,57 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+window.onload=function(){
+var restext = document.getElementById("restext");
+var savebtn = document.getElementById("save");
+var deletebtn = document.getElementById("delete");
+let arr = [];
+if (!window.localStorage) {
+    restext.innerHTML = "web Storageに対応しておりません。";
+    return;
+}
+savebtn.addEventListener("click", function() {
+    var t = document.getElementById("uname").value;
+    var n = document.getElementById("email").value;
+    var m = document.getElementById("message").value;
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+    if ((t == null || t == "") || (n == null || n == "") || (m == null || m == "")) {
+        restext.innerHTML = "データを入力してください";
+        return;
     }
+
+    // var arr = '"' + count + '":{"uname":' + t + "," + '"email":' + n + "," +'"message":' + m +"},"
+
+    arr.push({"uname":t,"email":n,"message":m});
+    localStorage.setItem('datalist', arr);
+
+    window.localStorage.setItem("datalist", JSON.stringify(arr));
+    restext.innerHTML = "データを保存しました";
+    display();
+}, true);
+
+
+window.addEventListener("storage", function(evt) {
+  console.log(evt.storageArea);
+}, true);
+
+localStorage.setItem("hoge", "bbb");
+
+function display() {
+       let data = JSON.parse(window.localStorage.getItem("datalist"));
+        for (let i in data){
+            console.log("name;" + data[i].uname);
+            console.log("email:" + data[i].email);
+            console.log("message:" + data[i].message);
+            console.log("-----------------");
+        }
 };
 
-app.initialize();
+deletebtn.addEventListener("click", function() {
+    window.localStorage.clear();
+    var res = document.getElementById("res");
+    for (var i = 0; i < res.childNodes.length; i++) {
+        res.removeChild(res.childNodes.item(i));
+    }
+    restext.innerHTML = "保存データを削除しました。";
+}, true);
+}
+
+
