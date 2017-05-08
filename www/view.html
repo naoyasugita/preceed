@@ -46,21 +46,33 @@
         連絡先確認
     </div>
     <div id="menu">
-        <div class="menu">
+        <div class='menu'>
             名前<br>
-            <a>%name%</a>
+            <input id="username" type="text" placeholder="名前を入力してください">
         </div>
 
-        <div class="menu">
+        <div class='menu'>
             メールアドレス<br>
-            <a>%adress%</a>
+            <input id="email" type="text" placeholder="メールアドレスを入力してください">
         </div>
 
-        <div class="menu">
-            <a href="file:///C:/git/afukusima.github.io/preseed/index.html">変更</a>
+        <div class='menu'>
+            <a href="./">変更<br></a>
+            <input id="save" type="button" value="保存する">
+            <input id="delete" type="button" value="削除する">
+        </div>
+        <div class='menu'>
+            <p id="check"></p>
+
+        </div>
+        <div class='menu'>
+            <p id="restext"></p>
+            <p id="res"></p>
         </div>
     </div>
     <div id="footer">
-        <a href="file:///C:/git/afukusima.github.io/preseed3/index.html">戻る</a>
+        <a href="./">戻る</a>
     </div>
+    <script src="js/contact.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
 </body>
