@@ -27,8 +27,6 @@ savebtn.addEventListener("click", function() {
 function display() {
         var lo = new LocalStorage("datalist");
         var d = lo.load();
-        console.log(num);
-        console.log(d[num].username);
         var dl = document.createElement("a");
         dl.id = "restext";
         document.getElementById("res").appendChild(dl);
