@@ -27,6 +27,13 @@ savebtn.addEventListener("click", function() {
     display();
 }, true);
 
+
+window.addEventListener("storage", function(evt) {
+  console.log(evt.storageArea);
+}, true);
+
+localStorage.setItem("hoge", "bbb");
+
 function display() {
        let data = JSON.parse(window.localStorage.getItem("datalist"));
         for (let i in data){
@@ -46,3 +53,5 @@ deletebtn.addEventListener("click", function() {
     restext.innerHTML = "保存データを削除しました。";
 }, true);
 }
+
+
