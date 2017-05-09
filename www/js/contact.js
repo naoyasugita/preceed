@@ -29,6 +29,8 @@ class Contact extends LocalStorage {
 
     constructor( identifier ){
         super( identifier )
+        if( this.value === null )
+            this.value = {}
     }
 
     get( username ){
