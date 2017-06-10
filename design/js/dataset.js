@@ -8,6 +8,6 @@ window.onload=function(){
         var data = d[key];
         // console.log(key+":" + data);
         document.getElementById("res").appendChild(dl);
-        dl.innerHTML = "名前" + key + "<br>" + "メールアドレス" + data + "<br><br>";
+        dl.innerHTML = "名前:" + key + "<br>" + "メールアドレス:" + data + "<br><br>";
     }
 }
